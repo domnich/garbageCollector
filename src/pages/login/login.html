@@ -1,13 +1,11 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content>
+  <div class="splash-bg"></div>
+  <div class="splash-info">
+    <div class="splash-logo"></div>
+    <div class="splash-intro">
+      {{ 'WELCOME_INTRO' | translate }}
+    </div>
+  </div>
   <form (submit)="doLogin()">
     <ion-list>
 
@@ -33,7 +31,11 @@
       <div padding>
         <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
       </div>
-
     </ion-list>
   </form>
+
+  <div padding>
+    <button ion-button color="primary" clear (click)="signup()" >Sign Up</button>
+    <button ion-button color="primary" clear (click)="signup()" >Forgot Password</button>
+  </div>
 </ion-content>
