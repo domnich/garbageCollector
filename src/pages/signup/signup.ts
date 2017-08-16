@@ -4,7 +4,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { MainPage } from '../../pages/pages';
 import { User } from '../../providers/user';
-
+import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
 
 
@@ -22,11 +22,21 @@ export class SignupPage {
 
   // Our translated text strings
   private signupErrorString: string;
+  private isSettingsPage: any;
+  private pageTitleKey: string;
+  private pageTitle: string|any;
 
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
+    public translateService: TranslateService,
+              private geolocation: Geolocation,
+              private nativeGeocoder: NativeGeocoder, private storage: Storage) {
+
+
+    this.storage.get('user').then((val) => {
+      this.isSettingsPage = val;
+    });
 
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
@@ -35,9 +45,6 @@ export class SignupPage {
   }
 
   doSignup() {
-
-    console.log(111231)
-
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {
       this.navCtrl.push(MainPage);
@@ -56,6 +63,8 @@ export class SignupPage {
   }
 
 
+
+
   detectPosition() {
     this.geolocation.getCurrentPosition().then(pos => {
       alert('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
@@ -70,4 +79,13 @@ export class SignupPage {
         .catch((error: any) => console.log(error));
     });
   }
+
+  ionViewWillEnter() {
+
+    this.pageTitleKey = this.isSettingsPage ? 'SETTINGS_PAGE_PROFILE' : 'SIGNUP';
+    this.translateService.get(this.pageTitleKey).subscribe((res) => {
+      this.pageTitle = res;
+    })
+  }
+
 }

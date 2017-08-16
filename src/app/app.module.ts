@@ -6,7 +6,6 @@ import { Storage, IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
-
 import { MyApp } from './app.component';
 
 import { CardsPage } from '../pages/cards/cards';

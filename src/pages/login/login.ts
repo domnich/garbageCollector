@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 import { MainPage } from '../../pages/pages';
 
 import { User } from '../../providers/user';
@@ -27,8 +27,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
-
+    public translateService: TranslateService, private storage: Storage) {
+    this.storage.remove('user');
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
@@ -36,6 +36,9 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
+    this.storage.set('user', true);
+
+
     this.user.login(this.account).subscribe((resp) => {
       this.navCtrl.push(MainPage);
     }, (err) => {
@@ -48,6 +51,8 @@ export class LoginPage {
       });
       toast.present();
     });
+
+
   }
 
   signup() {
