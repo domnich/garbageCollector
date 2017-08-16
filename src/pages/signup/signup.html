@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Регистрация</ion-title>
+    <ion-title>{{'SIGNUP' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,12 +12,12 @@
     <ion-list>
 
       <ion-item>
-        <ion-label fixed>Имя</ion-label>
+        <ion-label fixed>{{'NAME' | translate}}</ion-label>
         <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Почта</ion-label>
+        <ion-label fixed>{{'Email' | translate}}</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
       </ion-item>
 
@@ -50,7 +50,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Пароль</ion-label>
+        <ion-label fixed>{{'PASSWORD' | translate}}</ion-label>
         <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
       </ion-item>
 
@@ -60,7 +60,7 @@
       </ion-item>
 
       <div padding>
-        <button  (click)="doSignup()" ion-button color="primary" block>Зарегестрироваться</button>
+        <button  (click)="doSignup()" ion-button color="primary" block>{{'SIGNUP' | translate}}</button>
       </div>
 
     </ion-list>

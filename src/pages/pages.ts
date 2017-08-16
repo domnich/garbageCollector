@@ -1,5 +1,5 @@
 import { ListMasterPage } from './list-master/list-master';
-import { SearchPage } from './search/search';
+import { InfoPage } from './info/info';
 import { SettingsPage } from './settings/settings';
 import { TabsPage } from './tabs/tabs';
 import { LoginPage } from './login/login';
@@ -13,5 +13,5 @@ export const MainPage = TabsPage;
 
 // The initial root pages for our tabs (remove if not using tabs)
 export const Tab1Root = ListMasterPage;
-export const Tab2Root = SearchPage;
+export const Tab2Root = InfoPage;
 export const Tab3Root = SettingsPage;

@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 
 import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
+import { InfoPage } from '../pages/info/info';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { ListMasterPage } from '../pages/list-master/list-master';
@@ -63,6 +64,7 @@ export function provideSettings(storage: Storage) {
     MyApp,
     CardsPage,
     ContentPage,
+    InfoPage,
     ItemCreatePage,
     ItemDetailPage,
     ListMasterPage,
@@ -100,6 +102,7 @@ export function provideSettings(storage: Storage) {
     LoginPage,
     MapPage,
     MenuPage,
+    InfoPage,
     SearchPage,
     SettingsPage,
     SignupPage,
