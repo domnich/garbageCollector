@@ -1,8 +1,9 @@
 import { ListMasterPage } from './list-master/list-master';
-import { InfoPage } from './info/info';
+
 import { SignupPage } from './signup/signup';
 import { TabsPage } from './tabs/tabs';
 import { LoginPage } from './login/login';
+import { SearchPage } from './search/search';
 
 // The page the user lands on after opening the app and without a session
 export const FirstRunPage = LoginPage;
@@ -13,5 +14,5 @@ export const MainPage = TabsPage;
 
 // The initial root pages for our tabs (remove if not using tabs)
 export const Tab1Root = ListMasterPage;
-export const Tab2Root = InfoPage;
+export const Tab2Root = SearchPage;
 export const Tab3Root = SignupPage;
