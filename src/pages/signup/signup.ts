@@ -6,7 +6,7 @@ import { MainPage } from '../../pages/pages';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '@ngx-translate/core';
-
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-signup',
@@ -86,6 +86,11 @@ export class SignupPage {
     this.translateService.get(this.pageTitleKey).subscribe((res) => {
       this.pageTitle = res;
     })
+  }
+
+  logout() {
+    this.storage.remove('user');
+    this.navCtrl.parent.parent.setRoot(LoginPage);
   }
 
 }

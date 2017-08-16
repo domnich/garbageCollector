@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 import { ItemCreatePage } from '../item-create/item-create';
 import { ItemDetailPage } from '../item-detail/item-detail';
-
+import { LoginPage } from '../login/login';
 import { Items } from '../../providers/providers';
 
 import { Item } from '../../models/item';
@@ -15,7 +15,7 @@ import { Item } from '../../models/item';
 export class ListMasterPage {
   currentItems: Item[];
 
-  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController, private storage: Storage) {
     this.currentItems = this.items.query();
   }
 
@@ -53,5 +53,10 @@ export class ListMasterPage {
     this.navCtrl.push(ItemDetailPage, {
       item: item
     });
+  }
+
+  logout() {
+    this.storage.remove('user');
+    this.navCtrl.parent.parent.setRoot(LoginPage);
   }
 }

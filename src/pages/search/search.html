@@ -2,6 +2,11 @@
 
   <ion-navbar>
     <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        Выйти
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

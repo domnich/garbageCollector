@@ -28,7 +28,7 @@ export class LoginPage {
     public user: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService, private storage: Storage) {
-    this.storage.remove('user');
+    //this.storage.remove('user');
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })

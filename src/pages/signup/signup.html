@@ -4,6 +4,11 @@
     <ion-title>
       {{pageTitle}}
     </ion-title>
+    <ion-buttons *ngIf="isSettingsPage" end>
+      <button ion-button icon-only (click)="logout()">
+        Выйти
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
