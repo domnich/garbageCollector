@@ -4,6 +4,9 @@ import { HttpModule, Http } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+
+
 import { MyApp } from './app.component';
 
 import { CardsPage } from '../pages/cards/cards';
@@ -112,6 +115,7 @@ export function provideSettings(storage: Storage) {
     GoogleMaps,
     SplashScreen,
     Geolocation,
+    NativeGeocoder,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development

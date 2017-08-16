@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NavController, ToastController } from 'ionic-angular';
-
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { MainPage } from '../../pages/pages';
 import { User } from '../../providers/user';
 
@@ -16,7 +16,7 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { name?: string, email?: string,  password?: string } = {
+  account: { name?: string, email?: string,  password?: string, city?: string, street?: string, confirmPassword?: string } = {
 
   };
 
@@ -26,17 +26,18 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService, private geolocation: Geolocation) {
+    public translateService: TranslateService, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
 
-    this.geolocation.getCurrentPosition().then(pos => {
-      alert('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
-    });
+
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
     })
   }
 
   doSignup() {
+
+    console.log(111231)
+
     // Attempt to login in through our User service
     this.user.signup(this.account).subscribe((resp) => {
       this.navCtrl.push(MainPage);
@@ -51,6 +52,22 @@ export class SignupPage {
         position: 'top'
       });
       toast.present();
+    });
+  }
+
+
+  detectPosition() {
+    this.geolocation.getCurrentPosition().then(pos => {
+      alert('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+
+      this.nativeGeocoder.reverseGeocode(pos.coords.latitude, pos.coords.longitude)
+        .then((result: NativeGeocoderReverseResult) => {
+          console.log(result)
+
+          this.account.city = result['locality'];
+          this.account.street = result['thoroughfare'] + ' ' + result['subThoroughfare'];
+        })
+        .catch((error: any) => console.log(error));
     });
   }
 }

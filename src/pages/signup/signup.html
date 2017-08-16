@@ -1,14 +1,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+    <ion-title>Регистрация</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <form (submit)="doSignup()">
+  <form>
     <ion-list>
 
       <ion-item>
@@ -17,7 +17,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
+        <ion-label fixed>Почта</ion-label>
         <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
       </ion-item>
 
@@ -31,12 +31,31 @@
       -->
 
       <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+        <ion-label fixed>Город</ion-label>
+        <ion-input type="text" [(ngModel)]="account.city" name="city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Улица</ion-label>
+        <ion-input type="text" [(ngModel)]="account.street" name="street"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <button class="detect-position" (click)="detectPosition()" ion-button color="secondary" block>Определить местоположение</button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Пароль</ion-label>
         <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label fixed>Подтвердить Пароль</ion-label>
+        <ion-input type="password" [(ngModel)]="account.confirmPassword" name="confirmPassword"></ion-input>
+      </ion-item>
+
       <div padding>
-        <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+        <button  (click)="doSignup()" ion-button color="primary" block>Зарегестрироваться</button>
       </div>
 
     </ion-list>
