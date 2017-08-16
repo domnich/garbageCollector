@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 import { NavController, ToastController } from 'ionic-angular';
 
 import { MainPage } from '../../pages/pages';
@@ -25,8 +26,11 @@ export class SignupPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService, private geolocation: Geolocation) {
 
+    this.geolocation.getCurrentPosition().then(pos => {
+      alert('lat: ' + pos.coords.latitude + ', lon: ' + pos.coords.longitude);
+    });
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
     })
